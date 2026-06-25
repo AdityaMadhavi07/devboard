@@ -23,6 +23,9 @@ jobs:
             # - name: Login to GHCR
             #   run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u adityamadhavi07 --password-stdin
 
+            - name: Clean Docker auth config
+              run: rm -rf ~/.docker/config.json || true
+
 
             - name: Login to GHCR
               uses: docker/login-action@v3
