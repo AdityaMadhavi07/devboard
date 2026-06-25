@@ -107,9 +107,9 @@ jobs:
             - name: Docker Build and Push
               uses: docker/build-push-action@v7
               with:
-                context: ./frontend
+                context: ./backend
                 push: true
-                tags: ghcr.io/adityamadhavi07/devboard-frontend:latest
+                tags: ghcr.io/adityamadhavi07/devboard-backend:latest
             
     #         - name: Docker Setup [Login]
     #           uses: docker/login-action@v4
