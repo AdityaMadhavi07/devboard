@@ -94,6 +94,22 @@ jobs:
             - name: Run Tests
               run: go test 
               working-directory: backend
+
+
+            - name: Github Container Registry [Login]
+              uses: docker/login-action@v4
+              with:
+                registry: ghcr.io   
+                username: ${{ github.actor }}
+                password: ${{ secrets.GITHUB_TOKEN }}
+
+
+            - name: Docker Build and Push
+              uses: docker/build-push-action@v7
+              with:
+                context: ./frontend
+                push: true
+                tags: ghcr.io/adityamadhavi07/devboard-frontend:latest
             
     #         - name: Docker Setup [Login]
     #           uses: docker/login-action@v4
