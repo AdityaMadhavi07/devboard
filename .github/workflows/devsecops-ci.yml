@@ -11,7 +11,7 @@ jobs:
     #     workflow using that Job
 
     code-quality:
-        uses: ./.github/workflows/code.quality.yaml
+        uses: ./.github/workflows/code-quality.yml
         
     secret-scanning:
         uses: ./.github/workflows/secret-scanning.yml
