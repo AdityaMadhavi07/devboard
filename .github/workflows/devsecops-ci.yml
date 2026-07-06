@@ -3,6 +3,7 @@
 name: DevSecOps
 
 on: 
+    workflow_call:
     push:
         branches: [devsecops]
 
