@@ -4,6 +4,7 @@ name: DevSecOps
 
 on: 
     push:
+        branches: [devsecops]
 
 jobs:
 
