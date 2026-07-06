@@ -1,22 +1,24 @@
-# goal: ti run end to end devsecops pipeline 
+# goal: ti run end to end devsecops pipeline
 
 name: DevSecOps
 
-on: 
+on:
     workflow_call:
     push:
         branches: [devsecops]
 
 jobs:
-
     # job-name:
     #     workflow using that Job
 
+    #code stage
     code-quality:
         uses: ./.github/workflows/code-quality.yml
-        
+
+    # secret-scanning
     secret-scanning:
         uses: ./.github/workflows/secret-scanning.yml
 
-        
-    
+    #dependency checks
+    dependency-checks:
+        uses: ./.github/workflows/dependency-scan.yml
