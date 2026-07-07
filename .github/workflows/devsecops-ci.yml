@@ -1,6 +1,9 @@
 # goal: to run end to end devsecops CI pipeline
 
 name: DevSecOps
+permissions:
+    contents: read
+    packages: write
 
 on:
     workflow_call:
