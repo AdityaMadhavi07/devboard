@@ -31,5 +31,5 @@ jobs:
               with:
                   context: ./${{ matrix.folders }}
                   push: true
-                  tags: ghcr.io/${{ github.repository_owner }}/devboard-${{ matrix.folders }}:latest
+                  tags: ghcr.io/adityamadhavi07/devboard-${{ matrix.folders }}:latest
                   #   tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-${{ matrix.folders}}:latest
