@@ -1,4 +1,4 @@
-# goal - i have to ensure the packages & dependencies have been audited
+# goal - i have to ensure the packages & dependencies have been audited for security
 
 name: Dependency Scan
 
@@ -16,6 +16,8 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: 1.22
+          go-version-file: "go.mod"
+          cache-dependency-path: go.sum
 
       - name: Install Govulncheck
         run: go install golang.org/x/vuln/cmd/govulncheck@v1.1.4
@@ -24,14 +26,6 @@ jobs:
         continue-on-error: true
         run: govulncheck ./... > govulncheck-report.txt
         working-directory: backend
-
-      - name: Upload Report to Artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: dependency-scan-report
-          path: reports/dependency-report.txt
-          retention-days: 5
 
       - name: Setup Node
         uses: actions/setup-node@v5
@@ -43,3 +37,11 @@ jobs:
       - name: Run Dependency Scan for Node
         run: npm audit
         working-directory: frontend
+
+      - name: Upload Report to Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-scan-report
+          path: reports/dependency-report.txt
+          retention-days: 5
