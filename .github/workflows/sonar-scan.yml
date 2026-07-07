@@ -20,5 +20,5 @@ jobs:
                   SONAR_TOKEN: ed31cfbc72cf1059e12956f2a1e55d811efb7335
                   SONAR_HOST_URL: https://sonarcloud.io
                   SONAR_BRANCH: devsecops
-                  SONAR_PROJECT_KEY: adityamadhavi07
-                  SONAR_ORGANIZATION: Aditya Madhavi
+                  #   SONAR_PROJECT_KEY: adityamadhavi07
+                  #   SONAR_ORGANIZATION: Aditya Madhavi
