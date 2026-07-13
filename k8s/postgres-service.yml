@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  # name: devboard-backend-service
+  name: postgres # because our backend accesses postgres URL by name- "postgres"
+  namespace: devboard
+spec:
+  selector:
+    app: devboard-postgres
+  ports:
+    - protocol: TCP
+      port: 5432 # service, why thisss?
+      targetPort: 5432 # pod port
+      # nodePort: 30080 --why we commented this line in backend?
+  # type: NodePort
+  # note: type: clusterIp - this is by-default the porttype
+

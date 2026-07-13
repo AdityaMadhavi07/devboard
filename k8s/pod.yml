@@ -1,0 +1,13 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: devboard-frontend
+  namespace: devboard
+spec:
+  containers:
+    - name: devboard-frontend
+      # image: ghcr.io/adityamadhavi07/devboard-frontend:${IMAGE_TAG:-latest}
+      image: trainwithshubham/devboard-frontend:latest
+      ports:
+        - containerPort: 4173
+
