@@ -1,0 +1,58 @@
+kubectl exec -it pod/postgres-deployment-6ff5c5c4f8-vk7tx -n devboard -- /bin/bash
+
+cd /var/lib/postgresql/data
+
+echo "hellodosto" > log.txt
+exit
+
+
+kubectl get pods -o wide -n devboard
+
+docker ps
+
+docker exec -it containerid bash
+cd /mnt
+ls
+-------------------------------
+
+commands:
+
+kind delete cluster --name tws-cluster
+kind create cluster --config kind-config.yml
+
+cd devboard
+kubectl apply -f namespace.yml
+kubectl apply -f secrets.yml
+kubectl apply -f configMap.yml
+kubectl apply -f persistent-volume.yml
+kubectl apply -f postgres-statefulset.yml -f postgres-service.yml
+kubectl apply -f backend-deployment.yml -f backend-service.yml
+kubectl apply -f frontend-deployment.yml -f frontend-service.yml
+kubectl apply -f postgres-init.yml
+
+kubectl get all -n devboard
+
+kubectl top node
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+kubectl -n kube-system edit deployment metrics-server
+Add the security bypass to deployment under container.args
+- --kubelet-insecure-tls
+- --kubelet-preferred-address-types=InternalIP,Hostname,ExternalIP
+kubectl -n kube-system rollout restart deployment metrics-server
+kubectl top node
+kubectl top pods -n devboard
+
+------------------------------------------------------------------------------------------------
+
+kubectl get sa -n devboard
+kubectl apply -f admin-role.yml
+kubectl apply -f intern-role.yml
+kubectl apply -f intern-role-binding.yml 
+
+
+kubectl auth can-i create deployment -n devboard
+
+kubectl get sa -n devboard
+kubectl auth can-i get pods -n devboard --as=devboard-intern
+kubectl auth can-i get deployment -n devboard --as=devboard-intern
+kubectl auth can-i delete service -n devboard --as=devboard-intern
